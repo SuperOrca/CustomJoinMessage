@@ -18,12 +18,18 @@ public final class CustomJoinMessage extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(this, this);
     }
 
+    public String TranslateReplace(String text, String name) {
+        text = text.replace("%player%", name);
+        return ChatColor.translateAlternateColorCodes('&', text);
+    }
+
     @EventHandler
     public void playerJoin(PlayerJoinEvent e) {
-        e.setJoinMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("join-message")));
+        String name = e.getPlayer().getName();
+        e.setJoinMessage(TranslateReplace(getConfig().getString("join-message"), name));
         if (getConfig().getBoolean("join-title.enabled")) {
-            String title = ChatColor.translateAlternateColorCodes('&', getConfig().getString("join-title.title"));
-            String subtitle = ChatColor.translateAlternateColorCodes('&', getConfig().getString("join-title.subtitle"));
+            String title = TranslateReplace(getConfig().getString("join-title.title"), name);
+            String subtitle = TranslateReplace(getConfig().getString("join-title.subtitle"), name);
             int fadeIn = getConfig().getInt("join-title.fadeIn");
             int stay = getConfig().getInt("join-title.stay");
             int fadeOut = getConfig().getInt("join-title.fadeOut");
@@ -33,6 +39,7 @@ public final class CustomJoinMessage extends JavaPlugin implements Listener {
 
     @EventHandler
     public void playerQuit(PlayerQuitEvent e) {
-        e.setQuitMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("quit-message")));
+        String name = e.getPlayer().getName();
+        e.setQuitMessage(TranslateReplace(getConfig().getString("quit-message"), name));
     }
 }
