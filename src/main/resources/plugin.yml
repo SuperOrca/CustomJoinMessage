@@ -1,0 +1,6 @@
+name: CustomJoinMessage
+version: ${project.version}
+main: me.superorca.customjoinmessage.CustomJoinMessage
+api-version: 1.16
+authors: [SuperOrca]
+description: A lightweigt plugin to customize joining and leaving messages!
