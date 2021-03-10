@@ -18,7 +18,7 @@ public final class CustomJoinMessage extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(this, this);
     }
 
-    public String TranslateReplace(String text, String name) {
+    public String TranslateReplace(String text, String name) { // Replace variables
         text = text.replace("%player%", name);
         return ChatColor.translateAlternateColorCodes('&', text);
     }
@@ -26,8 +26,8 @@ public final class CustomJoinMessage extends JavaPlugin implements Listener {
     @EventHandler
     public void playerJoin(PlayerJoinEvent e) {
         String name = e.getPlayer().getName();
-        e.setJoinMessage(TranslateReplace(getConfig().getString("join-message"), name));
-        if (getConfig().getBoolean("join-title.enabled")) {
+        e.setJoinMessage(TranslateReplace(getConfig().getString("join-message"), name)); // Join message
+        if (getConfig().getBoolean("join-title.enabled")) { // Join title
             String title = TranslateReplace(getConfig().getString("join-title.title"), name);
             String subtitle = TranslateReplace(getConfig().getString("join-title.subtitle"), name);
             int fadeIn = getConfig().getInt("join-title.fadeIn");
@@ -38,7 +38,7 @@ public final class CustomJoinMessage extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void playerQuit(PlayerQuitEvent e) {
+    public void playerQuit(PlayerQuitEvent e) { // Quit message
         String name = e.getPlayer().getName();
         e.setQuitMessage(TranslateReplace(getConfig().getString("quit-message"), name));
     }
