@@ -1,2 +1,2 @@
 # CustomJoinMessage
- A lightweigt plugin to customize joining and leaving messages!
+ A lightweight plugin to customize joining and leaving messages!
